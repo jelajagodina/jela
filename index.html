@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jela - Ekskluzivne Sajamske Ponude</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f9f9f8 url('https://www.transparenttextures.com/patterns/linen.png') repeat;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      max-width: 420px;
+      width: 90%;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      overflow: hidden;
+      border: 1px solid #eee;
+    }
+
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(176, 214, 103, 0.15);
+    }
+
+    .card::before {
+      width: 150px;
+      height: 150px;
+      top: -60px;
+      right: -60px;
+    }
+
+    .card::after {
+      width: 120px;
+      height: 120px;
+      bottom: -50px;
+      left: -50px;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #b0d667;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.3px;
+    }
+
+    p.subtitle {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    input[type="email"]:focus {
+      border-color: #b0d667;
+      outline: none;
+      box-shadow: 0 0 8px rgba(176, 214, 103, 0.3);
+    }
+
+    button {
+      width: 100%;
+      background-color: #b0d667;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 5px 18px rgba(176, 214, 103, 0.25);
+    }
+
+    button:hover {
+      background-color: #99c94f;
+      box-shadow: 0 6px 22px rgba(176, 214, 103, 0.35);
+      transform: translateY(-1px);
+    }
+
+    p.note {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="C:\Users\Rakic\Desktop\stand\jela-jagodina-logo.png" alt="Jela logo" class="logo">
+    <h1>Ekskluzivne Sajamske Ponude</h1>
+    <p class="subtitle">Unesite svoj email i prvi saznajte o specijalnim sajamskim popustima i novim kolekcijama nameštaja.</p>
+
+    <form id="contactForm" action="https://formspree.io/f/xzzypnag" method="POST">
+      <input type="email" name="email" placeholder="Vaša email adresa" required>
+      <button type="submit">Pošalji i pogledaj ponudu</button>
+    </form>
+
+    <p class="note">*Vaša adresa koristi se isključivo za obaveštenja o Jela ponudama i akcijama.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        // odmah preusmeri na željeni katalog
+        window.location.href = "https://jela.rs/catalog/radda/?program=93";
+      } else {
+        alert('Došlo je do greške. Pokušajte ponovo.');
+      }
+    });
+  </script>
+</body>
+</html>
